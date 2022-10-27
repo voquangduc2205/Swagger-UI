@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2015"],
+    "module": "CommonJS",
+    "outDir": "dist", // output folder for .js files
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES2015" // js output version
+  },
+  "include": ["src"] // input folder for .ts files
+}
