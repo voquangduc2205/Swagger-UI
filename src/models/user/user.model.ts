@@ -4,6 +4,7 @@ interface UserData {
   username: string;
   email: string;
   password: string;
+  accessToken: string;
 }
 
 const DEFAULT_PROJECTION = {
@@ -41,6 +42,10 @@ function getUserByEmail(email: string, projected = true) {
   return User.findOne({ email: email }, projected ? DEFAULT_PROJECTION : {});
 }
 
+function getUserByName(username: string, projected = true) {
+  return User.findOne({ username: username }, projected ? DEFAULT_PROJECTION : {});
+}
+
 function updateUser(id: string, updateData: UserData) {
   return User.findByIdAndUpdate(id, updateData, {
     returnDocument: "after",
@@ -60,6 +65,7 @@ const userModel = {
   getUsers,
   getUserById,
   getUserByEmail,
+  getUserByName,
   updateUser,
   deleteUser,
 };

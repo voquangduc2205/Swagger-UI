@@ -12,6 +12,20 @@ const swaggerDefinition = {
   //   description: "Github Repo"
   //   url: http://swagger.io
   // },
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+      },
+    },
+  },
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   servers: [
     {
       url: "http://localhost:8000",

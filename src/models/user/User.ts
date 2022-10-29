@@ -4,6 +4,7 @@ export interface IUser extends Document {
   username: string;
   email: string;
   password: string;
+  accessToken: string;
 }
 
 /**
@@ -13,12 +14,12 @@ export interface IUser extends Document {
  *    UserLoginCredential:
  *      type: object
  *      required:
- *        - email
+ *        - username
  *        - password
  *      properties:
- *        email:
+ *        username:
  *          type: string
- *          default: jane.doe@example.com
+ *          default: JaneDoe1236
  *        password:
  *          type: string
  *          default: stringPassword123
@@ -31,10 +32,10 @@ export interface IUser extends Document {
  *      properties:
  *        email:
  *          type: string
- *          default: jane.doe@example.com
+ *          default: jane123.doe@example.com
  *        username:
  *          type: string
- *          default: Jane Doe
+ *          default: JaneDoe123456
  *        password:
  *          type: string
  *          default: stringPassword123
@@ -43,10 +44,10 @@ export interface IUser extends Document {
  *      properties:
  *        email:
  *          type: string
- *          default: jane.doe@example.com
+ *          default: jane123.doe@example.com
  *        username:
  *          type: string
- *          default: Jane Doe
+ *          default: JaneDoe123
  *        password:
  *          type: string
  *          default: stringPassword123
@@ -75,6 +76,7 @@ const UserSchema: Schema<IUser> = new Schema(
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    accessToken: {type: String},
   },
   { timestamps: true }
 );

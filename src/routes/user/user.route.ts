@@ -1,12 +1,13 @@
 import * as express from "express";
 import routeValidator from "../../middlewares/routeValidator";
 import userController from "./user.controller";
+import verifyToken from "../../middlewares/tokenVerify";
 
 const userRouter = express.Router();
 
 /**
  * @openapi
- * /user/register:
+ * /dashboard/user:
  *   post:
  *     tags:
  *      - user
@@ -35,14 +36,14 @@ const userRouter = express.Router();
  */
 
 userRouter.post(
-  "/register",
+  "/",
   userController.validateRegisterInput,
   userController.registerUser
 );
 
 /**
  * @openapi
- * /user:
+ * /dashboard/user:
  *   get:
  *     tags:
  *      - user
@@ -61,11 +62,11 @@ userRouter.post(
  *          description: Something went wrong
  */
 
-userRouter.get("/", userController.getUsers);
+userRouter.get("/",  verifyToken, userController.getUsers);
 
 /**
  * @openapi
- * /user/{userId}:
+ * /dashboard/user/{userId}:
  *   get:
  *     tags:
  *      - user
@@ -95,7 +96,7 @@ userRouter.get("/:id", routeValidator.validateIDParam, userController.getUser);
 
 /**
  * @openapi
- * /user/{userId}:
+ * /dashboard/user/{userId}:
  *   patch:
  *     tags:
  *      - user
@@ -136,7 +137,7 @@ userRouter.patch(
 
 /**
  * @openapi
- * /user/{userId}:
+ * /dashboard/user/{userId}:
  *   delete:
  *     tags:
  *      - user

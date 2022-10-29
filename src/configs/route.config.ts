@@ -13,7 +13,7 @@ export const errorResponse = {
   INVALID_PASSWORD: { error: "Invalid password" },
   USER_EXISTS: { error: "User already exists" },
   MISSING_USER_LOGIN_FIELDS: {
-    error: "Missing email or password",
+    error: "Missing username or password",
   },
-  WRONG_EMAIL_PASSWORD: { error: "Wrong email or password" },
+  WRONG_USERNAME_PASSWORD: { error: "Wrong username or password" },
 };

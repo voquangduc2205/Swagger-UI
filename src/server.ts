@@ -7,5 +7,5 @@ const PORT = process.env.PORT || 8000;
 
 server.listen(PORT, async () => {
   await mongoService.connect();
-  console.log("Server is running");
+  console.log(`Swagger UI is running on http://localhost:${PORT}/docs`);
 });

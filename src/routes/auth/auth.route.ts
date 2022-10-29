@@ -5,14 +5,14 @@ const authRouter = express.Router();
 
 /**
  * @openapi
- * /auth/login:
+ * /dashboard/user/auth/login:
  *   post:
  *     tags:
  *      - auth
  *     summary: Login user
  *     description: Login with the user's credentials.
  *     requestBody:
- *          description: User's credentials - email and password
+ *          description: User's credentials - username and password
  *          content:
  *            application/json:
  *              schema:

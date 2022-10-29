@@ -13,8 +13,8 @@ app.get("/", (req, res) => {
 
 app.use("/docs", docsRouter);
 
-app.use("/auth", authRouter);
+app.use("/dashboard/user/auth", authRouter);
 
-app.use("/user", userRouter);
+app.use("/dashboard/user", userRouter);
 
 export default app;

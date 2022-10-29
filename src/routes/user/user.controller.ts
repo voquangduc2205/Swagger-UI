@@ -1,6 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import { errorResponse } from "../../configs/route.config";
+import * as jwt from "jsonwebtoken";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 import userModel from "../../models/user/user.model";
+
+const token_key = process.env.TOKEN_KEY || "rocketdata"
 
 const USERNAME_REGEX = /^[a-zA-Z0-9]{6,14}$/;
 const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -33,7 +39,20 @@ async function validateRegisterInput(
 
 async function registerUser(req: Request, res: Response, next: NextFunction) {
   try {
-    const registedUser = await userModel.addUser(req.body);
+    
+    const {username, email, password} = req.body;
+    
+    const token = jwt.sign(
+      { username: username, email: email, password: password }, token_key, { expiresIn: "2h",}
+    );
+    
+    const user = {
+      'username': username,
+      'email': email,
+      'password': password,
+      'accessToken': token,
+    }
+    const registedUser = await userModel.addUser(user);
     return res.status(201).send(registedUser);
   } catch (error) {
     next(error);
